@@ -61,7 +61,7 @@ class chineseName extends SqlTool {
         $name_count = count($disintegration_name);
 
         for ($k = 0; $k <= $name_count; $k++) {
-            if($k+1 > ($name_count - 1)) {
+            if ($k+1 > ($name_count - 1)) {
                 break;
             }
 
