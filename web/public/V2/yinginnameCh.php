@@ -3,7 +3,7 @@
 include('../connection/connection.php');
 
 
-$name     = '林郡瑤';
+$name     = '吳義倫';
 $firname  = mb_substr( $name,0,1,"utf-8");
 $secname  = mb_substr( $name,1,1,"utf-8");
 $thirname = mb_substr( $name,2,1,"utf-8");
@@ -40,7 +40,7 @@ $key =0 ;
     	$fir1 = $fir;
     	$sec1 = $sec;
 	}else{
-		if(strlen((string)$fir) < 2) { 
+		if(strlen((string)$fir) < 2) {
 		    $fir1 = (string)('0'.$fir);
 		    $selfir = 24 + (int)$fir;
 	    }else {
@@ -54,7 +54,7 @@ $key =0 ;
 
 	}
 
-	if(strlen($chapair) == 3){ 
+	if(strlen($chapair) == 3){
 		$chapair = '0'.$chapair;
 	}
 
@@ -88,7 +88,7 @@ $key2 = 0;
     	$sec1  = $sec;
     	$thir1 = $thir;
 	}else{
-		if(strlen((string)$sec) < 2){ 
+		if(strlen((string)$sec) < 2){
 			$sec1 = (string)('0'.$sec);
 			$selsec = 24 + (int)$sec;
 		}else {
@@ -155,7 +155,7 @@ $key3 = 0;
     		$json2[$key3]['chapair']['yingin192_id'] = $row33['yingin192_id'];
     		$json2[$key3]['chapair']['goodorbad'] = $row33['goodorbad'];
     		$json2[$key3]['chapair']['mean'] = $row33['mean'];
-    		
+
 			$json2[$key3]['kunpair']['num'] = $kunpair;
     		$json2[$key3]['kunpair']['yingin192_id'] = $row35['yingin192_id'];
     		$json2[$key3]['kunpair']['goodorbad'] = $row35['goodorbad'];
@@ -178,11 +178,11 @@ $key3 = 0;
 <table border = "1" style="font-szie:20px">
 	<tr>
 		<td colspan="2">姓名
-		 	<?php 	
+		 	<?php
 		 		$name_score = nameScroe($json2[0]['chaga']['goodorbad']) + nameScroe($json2[0]['kunga']['goodorbad']) + nameScroe($json2[0]['chapair']['goodorbad']) + nameScroe($json2[0]['kunpair']['goodorbad']) + nameScroe($json2[0]['allga']['goodorbad']);
 		 		echo '( ' . $name_score . ' ) 分 ';
 			?>
-			
+
 		</td>
 		<td colspan="3"><?php echo $json2[0]['name']; ?></td>
 	</tr>
@@ -243,7 +243,7 @@ function nameScroe($goodorbad) {
 			break;
 		case '中下':
 			$score = 5;
-			break;		
+			break;
 		default:
 			$score = 0;
 			break;
