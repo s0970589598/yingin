@@ -3,7 +3,7 @@
 include('../connection/connection.php');
 
 
-$name     = '吳義倫';
+$name     = '蔡旻珊';
 $firname  = mb_substr( $name,0,1,"utf-8");
 $secname  = mb_substr( $name,1,1,"utf-8");
 $thirname = mb_substr( $name,2,1,"utf-8");

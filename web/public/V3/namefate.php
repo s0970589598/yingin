@@ -11,3 +11,4 @@
         print_r($name_fate);
     }
 ?>
+

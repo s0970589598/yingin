@@ -2,7 +2,7 @@
 
 include('../connection/connection.php');
 
-$fir = 20;
+$fir = 2;
 
 $sec = 0;
 
@@ -29,7 +29,7 @@ for($sec=1;$sec<=32;$sec++){
     	$fir1 = $fir;
     	$sec1 = $sec;
 	}else{
-		if(strlen((string)$fir) < 2){ 
+		if(strlen((string)$fir) < 2){
 			$fir1 = (string)('0'.$fir);
 		    $selfir = 24 + (int)$fir;
 		}else {
@@ -264,22 +264,22 @@ foreach ($json2 as $va) {
 	</tr>
 	<tr>
 	<td colspan="5">
-	<?php 
+	<?php
 		echo	$va['sec'] . '</br>';
 		while ($rowsec = mysqli_fetch_assoc($resultsec)) {
 			echo	($rowsec['word'] != '??') ?  $rowsec['word'] . ' // ' : '';
 		};
-	?>	
+	?>
 	</td>
 	</tr>
 	<tr>
 	<td colspan="5">
-	<?php 
+	<?php
 		echo	$va['thir'] . '</br>';
 		while ($rowthir = mysqli_fetch_assoc($resultthir)) {
 		    echo    ($rowthir['word'] != '??') ?  $rowthir['word'] . ' // ' : '';
 		};
-	?>	
+	?>
 	</td>
 	</tr>
 </table>
@@ -304,7 +304,7 @@ function nameScroe($goodorbad) {
 			break;
 		case '中下':
 			$score = 5;
-			break;		
+			break;
 		default:
 			$score = 0;
 			break;

@@ -48,7 +48,7 @@ class chineseName extends SqlTool {
                 break;
             }
             (int)$composite_num[$j]['num'] = (int)$disintegration_name[$j]['strokes'] + (int)$disintegration_name[$j+1]['strokes'];
-            $string = (string)$composite_num[$j];
+            $string = (string)$composite_num[$j]['num'];
             $composite_num[$j]['num'] = str_pad($string,4,'0',STR_PAD_LEFT);
             $composite_num[$j]['article'] = self::getArticle($composite_num[$j]['num']);
 
@@ -67,7 +67,7 @@ class chineseName extends SqlTool {
 
             if ($disintegration_name[$k]['strokes'] < 10 && $disintegration_name[$k+1]['strokes'] < 10) {
                 $string = (string)$disintegration_name[$k]['strokes'] . (string)$disintegration_name[$k+1]['strokes'];
-                $matching_num[$k]['num'] = str_pad($string,2,'0',STR_PAD_LEFT);
+                $matching_num[$k]['num'] = str_pad($string,4,'0',STR_PAD_LEFT);
                 $matching_num[$k]['article'] = self::getArticle($matching_num[$k]['num']);
             } else {
                 if ($disintegration_name[$k]['strokes'] < 10) {
@@ -75,7 +75,7 @@ class chineseName extends SqlTool {
 
                 }
                 if ($disintegration_name[$k+1]['strokes'] < 10) {
-                    $disintegration_name[$k+1]['strokes'] = str_pad($string,1,'0',STR_PAD_LEFT);
+                    $disintegration_name[$k+1]['strokes'] = str_pad($disintegration_name[$k+1]['strokes'], 2, '0',STR_PAD_LEFT);
 
                 }
                 $matching_num[$k]['num'] = (string)$disintegration_name[$k]['strokes'] . (string)$disintegration_name[$k+1]['strokes'];
