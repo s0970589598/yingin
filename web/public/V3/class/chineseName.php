@@ -33,7 +33,8 @@ class chineseName extends SqlTool {
             'disintegration_name' => $disintegration_name,
             'composite_num' => $composite_num,
             'matching_num'  => $matching_num,
-            'total_num'     => $total_num
+            'total_num'     => $total_num,
+            'score'         => $composite_num['score'] + $matching_num['score'] + $total_num['score']
         );
 
         return json_encode($name_fate);
@@ -51,7 +52,7 @@ class chineseName extends SqlTool {
             $string = (string)$composite_num[$j]['num'];
             $composite_num[$j]['num'] = str_pad($string,4,'0',STR_PAD_LEFT);
             $composite_num[$j]['article'] = self::getArticle($composite_num[$j]['num']);
-
+            $composite_num['score'] += self::getNameScroe($composite_num[$j]['article']['goodorbad']);
         }
         return $composite_num;
     }
@@ -81,6 +82,7 @@ class chineseName extends SqlTool {
                 $matching_num[$k]['num'] = (string)$disintegration_name[$k]['strokes'] . (string)$disintegration_name[$k+1]['strokes'];
                 $matching_num[$k]['article'] = self::getArticle($matching_num[$k]['num']);
             }
+            $matching_num['score'] += self::getNameScroe($matching_num[$k]['article']['goodorbad']);
         }
         return $matching_num;
     }
@@ -96,6 +98,7 @@ class chineseName extends SqlTool {
         $string = (string)$total_num['num'];
         $total_num['num'] = str_pad($string,4,'0',STR_PAD_LEFT);
         $total_num['article'] = self::getArticle($total_num['num']);
+        $total_num['score'] += self::getNameScroe($total_num['article']['goodorbad']);
 
         return $total_num;
     }
@@ -122,6 +125,33 @@ class chineseName extends SqlTool {
         );
 
         return   $article;
+    }
+
+    public function getNameScroe($goodorbad) {
+        switch ($goodorbad) {
+            case '上上':
+                $score = 20;
+                break;
+            case '上中':
+                $score = 15;
+                break;
+            case '中中':
+                $score = 10;
+                break;
+            case '中平':
+                $score = 10;
+                break;
+            case '中下':
+                $score = 5;
+                break;
+            case '下中':
+                $score = 5;
+                break;
+            default:
+                $score = 0;
+                break;
+        }
+        return $score;
     }
 
 
