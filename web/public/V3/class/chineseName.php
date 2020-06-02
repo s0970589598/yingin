@@ -18,6 +18,7 @@ class chineseName extends SqlTool {
 
     public function fire($name)
     {
+        $name = trim($name);
         $name_count = mb_strlen(trim($name));
 
         for ($i = 0; $i < $name_count; $i++) {

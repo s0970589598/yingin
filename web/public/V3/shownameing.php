@@ -1,8 +1,9 @@
 <?php
+    set_time_limit(0);
     if (!empty($_POST)) {
         require '../V3/class/matchName.php';
         $match_name = new matchName;
-        $nameing = json_decode($match_name->fire($_POST['first_num'], 1), true);
+        $nameing = json_decode($match_name->fire($_POST['first_num'], $_POST['count']), true);
     } else {
         header('Location: nameing.php');
         exit;
@@ -46,9 +47,9 @@
 				<ul>
 					<li><a href="namefate.php">姓名鑑定</a></li>
 					<li class="active"><a href="nameing.php">姓名配對</a></li>
-                    <li><a href="#skills">公司名鑑定</a></li>
+                    <li><a href="conamefate.php">公司名鑑定</a></li>
                     <li><a href="#skills">公司名配對</a></li>
-					<li><a href="#achievements">靈數鑑定</a></li>
+					<li><a href="numfate.php">靈數鑑定</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -61,9 +62,10 @@
 	<div >
             <h1>
             <?php
-            echo '<span style="font-family:標楷體;font-size:48px;width:48px;line-height:55px;border:1px dashed #ccc;padding:8px;margin-right:14px">' . str_pad($val['first_num'],2,'0',STR_PAD_LEFT)  . '</span>';
-            echo '<span style="font-family:標楷體;font-size:48px;width:48px;line-height:55px;border:1px dashed #ccc;padding:8px;margin-right:14px">' . str_pad($val['sec_num'],2,'0',STR_PAD_LEFT)  . '</span>';
-            echo '<span style="font-family:標楷體;font-size:48px;width:48px;line-height:55px;border:1px dashed #ccc;padding:8px;margin-right:14px">' . str_pad($val['thir_num'],2,'0',STR_PAD_LEFT)  . '</span>';
+
+            foreach ($val['num'] as $val1) {
+                echo '<span style="font-family:標楷體;font-size:48px;width:48px;line-height:55px;border:1px dashed #ccc;padding:8px;margin-right:14px">' . str_pad((string)$val1,2,'0',STR_PAD_LEFT)  . '</span>';
+            }
             ?> &amp; 評價  <?php echo $val['score'];?>
 
             </h1>

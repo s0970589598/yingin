@@ -21,9 +21,31 @@ class matchName extends SqlTool
 
     public function fire($first_num, $name_count)
     {
-        $first = self::getCompositeNum($first_num, $name_count);
-        $sec = self::getCompositeNum2($first);
-        $total = self::getTotalNum($sec);
+        $first_num = trim($first_num);
+        $name_count = trim($name_count);
+
+        switch ($name_count) {
+            case 2 :
+                $nameing = self::getCompositeNum($first_num, $name_count);
+            break;
+            case 3 :
+                $first = self::getCompositeNum($first_num, $name_count);
+                $nameing = self::getCompositeNum2($first);
+            break;
+            case 4 :
+                $first = self::getCompositeNum($first_num, $name_count);
+                $sec = self::getCompositeNum2($first);
+                $nameing = self::getCompositeNum3($sec);
+            break;
+            case 5 :
+                $first = self::getCompositeNum($first_num, $name_count);
+                $sec = self::getCompositeNum2($first);
+                $third = self::getCompositeNum3($sec);
+                $nameing = self::getCompositeNum4($third);
+            break;
+        }
+
+        $total = self::getTotalNum($nameing, $name_count);
 
         return json_encode($total);
     }
@@ -40,8 +62,8 @@ class matchName extends SqlTool
             if (self::getGoodOrBad($article['goodorbad'])) {
                 $matching_num = self::getMatchingNum($first_num, $j);
                 if (self::getGoodOrBad($matching_num['article']['goodorbad'])) {
-                    $composite_num[$key]['first_num'] = $first_num;
-                    $composite_num[$key]['sec_num'] = $j;
+                    $composite_num[$key][0] = $first_num;
+                    $composite_num[$key][1] = $j;
                     $composite_num[$key]['chain_sum']['num'] = $num;
                     $composite_num[$key]['chain_sum']['article'] = $article;
                     $composite_num[$key]['matching'] = $matching_num;
@@ -50,6 +72,99 @@ class matchName extends SqlTool
             }
         }
         return $composite_num;
+    }
+
+    public function getCompositeNum2($sec)
+    {
+        $key = 0;
+        for ($i = 0; $i < count($sec); $i++) {
+            $sec_num = $sec[$i][1];
+            for ($j = 1; $j <= 32; $j++) {
+                $num = (int)$sec_num + $j;
+                $string = (string)$num;
+                $num = str_pad($string, 4, '0', STR_PAD_LEFT);
+                $article = self::getArticle($num);
+
+                if (self::getGoodOrBad($article['goodorbad'])) {
+                    $matching_num = self::getMatchingNum($sec_num, $j);
+                    if (self::getGoodOrBad($matching_num['article']['goodorbad'])) {
+                        $composite_num2[$key][0] = $sec[$i][0];
+                        $composite_num2[$key][1] = $sec[$i][1];
+                        $composite_num2[$key][2] = $j;
+                        $composite_num2[$key]['chain_sum'][0]= $sec[$i]['chain_sum'];
+                        $composite_num2[$key]['matching'][0] = $sec[$i]['matching'];
+                        $composite_num2[$key]['chain_sum'][1]['num'] = $num;
+                        $composite_num2[$key]['chain_sum'][1]['article'] = $article;
+                        $composite_num2[$key]['matching'][1] = $matching_num;
+                        $key += 1;
+                    }
+                }
+            }
+        }
+        return $composite_num2;
+    }
+
+    public function getCompositeNum3($third)
+    {
+        $key = 0;
+        for ($i = 0; $i < count($third); $i++) {
+            $sec_num = $third[$i][2];
+            for ($j = 1; $j <= 32; $j++) {
+                $num = (int)$sec_num + $j;
+                $string = (string)$num;
+                $num = str_pad($string, 4, '0', STR_PAD_LEFT);
+                $article = self::getArticle($num);
+
+                if (self::getGoodOrBad($article['goodorbad'])) {
+                    $matching_num = self::getMatchingNum($sec_num, $j);
+                    if (self::getGoodOrBad($matching_num['article']['goodorbad'])) {
+                        $composite_num2[$key][0] = $third[$i][0];
+                        $composite_num2[$key][1] = $third[$i][1];
+                        $composite_num2[$key][2] = $third[$i][2];
+                        $composite_num2[$key][3] = $j;
+                        $composite_num2[$key]['chain_sum'][$i]= $third[$i]['chain_sum'];
+                        $composite_num2[$key]['matching'][$i] = $third[$i]['matching'];
+                        $composite_num2[$key]['chain_sum'][2]['num'] = $num;
+                        $composite_num2[$key]['chain_sum'][2]['article'] = $article;
+                        $composite_num2[$key]['matching'][2] = $matching_num;
+                        $key += 1;
+                    }
+                }
+            }
+        }
+        return $composite_num2;
+    }
+
+    public function getCompositeNum4($four)
+    {
+        $key = 0;
+        for ($i = 0; $i < count($four); $i++) {
+            $sec_num = $four[$i][3];
+            for ($j = 1; $j <= 32; $j++) {
+                $num = (int)$sec_num + $j;
+                $string = (string)$num;
+                $num = str_pad($string, 4, '0', STR_PAD_LEFT);
+                $article = self::getArticle($num);
+
+                if (self::getGoodOrBad($article['goodorbad'])) {
+                    $matching_num = self::getMatchingNum($sec_num, $j);
+                    if (self::getGoodOrBad($matching_num['article']['goodorbad'])) {
+                        $composite_num2[$key][0] = $four[$i][0];
+                        $composite_num2[$key][1] = $four[$i][1];
+                        $composite_num2[$key][2] = $four[$i][2];
+                        $composite_num2[$key][3] = $four[$i][3];
+                        $composite_num2[$key][4] = $j;
+                        $composite_num2[$key]['chain_sum'][$i]= $four[$i]['chain_sum'];
+                        $composite_num2[$key]['matching'][$i] = $four[$i]['matching'];
+                        $composite_num2[$key]['chain_sum'][3]['num'] = $num;
+                        $composite_num2[$key]['chain_sum'][3]['article'] = $article;
+                        $composite_num2[$key]['matching'][3] = $matching_num;
+                        $key += 1;
+                    }
+                }
+            }
+        }
+        return $composite_num2;
     }
 
     public function getMatchingNum($first_num, $sec_num)
@@ -75,53 +190,28 @@ class matchName extends SqlTool
         return $matching;
     }
 
-    public function getCompositeNum2($first)
+    public function getTotalNum($sec, $name_count)
     {
-        $key = 0;
-        for ($i = 0; $i < count($first); $i++) {
-            $sec_num = $first[$i]['sec_num'];
-            for ($j = 1; $j <= 32; $j++) {
-                $num = (int)$sec_num + $j;
-                $string = (string)$num;
-                $num = str_pad($string, 4, '0', STR_PAD_LEFT);
-                $article = self::getArticle($num);
 
-                if (self::getGoodOrBad($article['goodorbad'])) {
-                    $matching_num = self::getMatchingNum($sec_num, $j);
-                    if (self::getGoodOrBad($matching_num['article']['goodorbad'])) {
-                        $composite_num2[$key]['first_num'] = $first[$i]['first_num'];
-                        $composite_num2[$key]['sec_num'] = $sec_num;
-                        $composite_num2[$key]['thir_num'] = $j;
-                        $composite_num2[$key]['chain_sum'][0]= $first[$i]['chain_sum'];
-                        $composite_num2[$key]['matching'][0] = $first[$i]['matching'];
-                        $composite_num2[$key]['chain_sum'][1]['num'] = $num;
-                        $composite_num2[$key]['chain_sum'][1]['article'] = $article;
-                        $composite_num2[$key]['matching'][1] = $matching_num;
-                        $key += 1;
-                    }
-                }
-            }
-        }
-        return $composite_num2;
-    }
-
-    public function getTotalNum($sec)
-    {
         $total = count($sec);
         $key = 0;
-        for ($l = 0; $l <= $total; $l++) {
-            $total_num['num'] = (int)$sec[$l]['first_num'] + $sec[$l]['sec_num'] + $sec[$l]['thir_num'];
-            $string = (string)$total_num['num'];
-            $total_num['num'] = str_pad($string, 4, '0', STR_PAD_LEFT);
-            $total_num['article'] = self::getArticle($total_num['num']);
 
-            if (self::getTotalGoodOrBad($total_num['article']['goodorbad'])) {
-                $composite_num2[$key]['first_num'] = $sec[$l]['first_num'];
-                $composite_num2[$key]['sec_num'] = $sec[$l]['sec_num'];
-                $composite_num2[$key]['thir_num'] = $sec[$l]['thir_num'];
+        for ($l = 0; $l < $total; $l++) {
+            for ($m = 0; $m < $name_count; $m++) {
+                $total_num[$l]['num'] += (int)$sec[$l][$m];
+            }
+
+            $string = (string)$total_num[$l]['num'];
+            $total_n[$l]['num'] = str_pad($string, 4, '0', STR_PAD_LEFT);
+            $total_n[$l]['article'] = self::getArticle($total_n[$l]['num']);
+
+            if (self::getTotalGoodOrBad($total_n[$l]['article']['goodorbad'])) {
+                for ($o = 0; $o < $name_count; $o++) {
+                    $composite_num2[$key]['num'][$o] = $sec[$l][$o];
+                }
                 $composite_num2[$key]['chain_sum']= $sec[$l]['chain_sum'];
                 $composite_num2[$key]['matching'] = $sec[$l]['matching'];
-                $composite_num2[$key]['total'] = $total_num;
+                $composite_num2[$key]['total'] = $total_n[$l];
                 $composite_num2[$key]['score'] = self::getNameScroe($composite_num2[$key]['chain_sum'][0]['article']['goodorbad']) + self::getNameScroe($composite_num2[$key]['matching'][0]['article']['goodorbad']) + self::getNameScroe($composite_num2[$key]['chain_sum'][1]['article']['goodorbad']) + self::getNameScroe($composite_num2[$key]['matching'][1]['article']['goodorbad']) + self::getNameScroe($composite_num2[$key]['total']['article']['goodorbad']);
                 $key += 1;
             }
