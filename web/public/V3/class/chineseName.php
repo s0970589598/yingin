@@ -53,7 +53,7 @@ class chineseName extends SqlTool {
             $string = (string)$composite_num[$j]['num'];
             $composite_num[$j]['num'] = str_pad($string,4,'0',STR_PAD_LEFT);
             $composite_num[$j]['article'] = self::getArticle($composite_num[$j]['num']);
-            $composite_num['score'] += self::getNameScroe($composite_num[$j]['article']['goodorbad']);
+            $composite_num['score'] += self::getNameScroe($composite_num[$j]['article']['goodorbad'], $name_count);
         }
         return $composite_num;
     }
@@ -83,7 +83,7 @@ class chineseName extends SqlTool {
                 $matching_num[$k]['num'] = (string)$disintegration_name[$k]['strokes'] . (string)$disintegration_name[$k+1]['strokes'];
                 $matching_num[$k]['article'] = self::getArticle($matching_num[$k]['num']);
             }
-            $matching_num['score'] += self::getNameScroe($matching_num[$k]['article']['goodorbad']);
+            $matching_num['score'] += self::getNameScroe($matching_num[$k]['article']['goodorbad'], $name_count);
         }
         return $matching_num;
     }
@@ -99,7 +99,7 @@ class chineseName extends SqlTool {
         $string = (string)$total_num['num'];
         $total_num['num'] = str_pad($string,4,'0',STR_PAD_LEFT);
         $total_num['article'] = self::getArticle($total_num['num']);
-        $total_num['score'] += self::getNameScroe($total_num['article']['goodorbad']);
+        $total_num['score'] += self::getNameScroe($total_num['article']['goodorbad'], $name_count);
 
         return $total_num;
     }
@@ -128,25 +128,25 @@ class chineseName extends SqlTool {
         return   $article;
     }
 
-    public function getNameScroe($goodorbad) {
+    public function getNameScroe($goodorbad, $name_count) {
         switch ($goodorbad) {
             case '上上':
-                $score = 20;
+                $score = round(100 / ($name_count + ($name_count - 1)));
                 break;
             case '上中':
-                $score = 15;
+                $score = round(100 / ($name_count + ($name_count - 1))) - 5;
                 break;
             case '中中':
-                $score = 10;
+                $score = round(100 / ($name_count + ($name_count - 1))) - 10;
                 break;
             case '中平':
-                $score = 10;
+                $score = round(100 / ($name_count + ($name_count - 1))) - 10;
                 break;
             case '中下':
-                $score = 5;
+                $score = round(100 / ($name_count + ($name_count - 1))) - 15;
                 break;
             case '下中':
-                $score = 5;
+                $score = round(100 / ($name_count + ($name_count - 1))) - 15;
                 break;
             default:
                 $score = 0;

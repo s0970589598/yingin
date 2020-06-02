@@ -64,9 +64,9 @@ class matchName extends SqlTool
                 if (self::getGoodOrBad($matching_num['article']['goodorbad'])) {
                     $composite_num[$key][0] = $first_num;
                     $composite_num[$key][1] = $j;
-                    $composite_num[$key]['chain_sum']['num'] = $num;
-                    $composite_num[$key]['chain_sum']['article'] = $article;
-                    $composite_num[$key]['matching'] = $matching_num;
+                    $composite_num[$key]['chain_sum'][0]['num'] = $num;
+                    $composite_num[$key]['chain_sum'][0]['article'] = $article;
+                    $composite_num[$key]['matching'][0] = $matching_num;
                     $key += 1;
                 }
             }
@@ -91,8 +91,8 @@ class matchName extends SqlTool
                         $composite_num2[$key][0] = $sec[$i][0];
                         $composite_num2[$key][1] = $sec[$i][1];
                         $composite_num2[$key][2] = $j;
-                        $composite_num2[$key]['chain_sum'][0]= $sec[$i]['chain_sum'];
-                        $composite_num2[$key]['matching'][0] = $sec[$i]['matching'];
+                        $composite_num2[$key]['chain_sum'][0]= $sec[$i]['chain_sum'][0];
+                        $composite_num2[$key]['matching'][0] = $sec[$i]['matching'][0];
                         $composite_num2[$key]['chain_sum'][1]['num'] = $num;
                         $composite_num2[$key]['chain_sum'][1]['article'] = $article;
                         $composite_num2[$key]['matching'][1] = $matching_num;
@@ -122,8 +122,8 @@ class matchName extends SqlTool
                         $composite_num2[$key][1] = $third[$i][1];
                         $composite_num2[$key][2] = $third[$i][2];
                         $composite_num2[$key][3] = $j;
-                        $composite_num2[$key]['chain_sum'][$i]= $third[$i]['chain_sum'];
-                        $composite_num2[$key]['matching'][$i] = $third[$i]['matching'];
+                        $composite_num2[$key]['chain_sum']= $third[$i]['chain_sum'];
+                        $composite_num2[$key]['matching']= $third[$i]['matching'];
                         $composite_num2[$key]['chain_sum'][2]['num'] = $num;
                         $composite_num2[$key]['chain_sum'][2]['article'] = $article;
                         $composite_num2[$key]['matching'][2] = $matching_num;
@@ -154,8 +154,8 @@ class matchName extends SqlTool
                         $composite_num2[$key][2] = $four[$i][2];
                         $composite_num2[$key][3] = $four[$i][3];
                         $composite_num2[$key][4] = $j;
-                        $composite_num2[$key]['chain_sum'][$i]= $four[$i]['chain_sum'];
-                        $composite_num2[$key]['matching'][$i] = $four[$i]['matching'];
+                        $composite_num2[$key]['chain_sum'] = $four[$i]['chain_sum'];
+                        $composite_num2[$key]['matching'] = $four[$i]['matching'];
                         $composite_num2[$key]['chain_sum'][3]['num'] = $num;
                         $composite_num2[$key]['chain_sum'][3]['article'] = $article;
                         $composite_num2[$key]['matching'][3] = $matching_num;
@@ -212,7 +212,11 @@ class matchName extends SqlTool
                 $composite_num2[$key]['chain_sum']= $sec[$l]['chain_sum'];
                 $composite_num2[$key]['matching'] = $sec[$l]['matching'];
                 $composite_num2[$key]['total'] = $total_n[$l];
-                $composite_num2[$key]['score'] = self::getNameScroe($composite_num2[$key]['chain_sum'][0]['article']['goodorbad']) + self::getNameScroe($composite_num2[$key]['matching'][0]['article']['goodorbad']) + self::getNameScroe($composite_num2[$key]['chain_sum'][1]['article']['goodorbad']) + self::getNameScroe($composite_num2[$key]['matching'][1]['article']['goodorbad']) + self::getNameScroe($composite_num2[$key]['total']['article']['goodorbad']);
+                for ($p = 0; $p < count($composite_num2[$key]['chain_sum']); $p++) {
+                    $composite_num2[$key]['score'] += (self::getNameScroe($composite_num2[$key]['chain_sum'][$p]['article']['goodorbad'], $name_count) + self::getNameScroe($composite_num2[$key]['matching'][$p]['article']['goodorbad'], $name_count));
+                }
+                $composite_num2[$key]['score'] += self::getNameScroe($composite_num2[$key]['total']['article']['goodorbad'], $name_count);
+
                 $key += 1;
             }
         }
@@ -261,25 +265,25 @@ class matchName extends SqlTool
         return   $article;
     }
 
-    public function getNameScroe($goodorbad) {
+    public function getNameScroe($goodorbad, $name_count) {
         switch ($goodorbad) {
             case '上上':
-                $score = 20;
+                $score = round(100 / ($name_count + ($name_count - 1)));
                 break;
             case '上中':
-                $score = 15;
+                $score = round(100 / ($name_count + ($name_count - 1))) - 5;
                 break;
             case '中中':
-                $score = 10;
+                $score = round(100 / ($name_count + ($name_count - 1))) - 10;
                 break;
             case '中平':
-                $score = 10;
+                $score = round(100 / ($name_count + ($name_count - 1))) - 10;
                 break;
             case '中下':
-                $score = 5;
+                $score = round(100 / ($name_count + ($name_count - 1))) - 15;
                 break;
             case '下中':
-                $score = 5;
+                $score = round(100 / ($name_count + ($name_count - 1))) - 15;
                 break;
             default:
                 $score = 0;

@@ -45,7 +45,7 @@
 					<li class="active"><a href="namefate.php">姓名鑑定</a></li>
 					<li><a href="nameing.php">姓名配對</a></li>
                     <li><a href="conamefate.php">公司名鑑定</a></li>
-                    <li><a href="#skills">公司名配對</a></li>
+                    <li><a href="conameing.php">公司名配對</a></li>
 					<li><a href="numfate.php">靈數鑑定</a></li>
 				</ul>
 			</nav>

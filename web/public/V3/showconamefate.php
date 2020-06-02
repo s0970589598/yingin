@@ -42,10 +42,10 @@
 			</div>
 			<nav id="navbar-1" class="navbar item-nav">
 				<ul>
-					<li class="active"><a href="namefate.php">姓名鑑定</a></li>
+					<li><a href="namefate.php">姓名鑑定</a></li>
 					<li><a href="nameing.php">姓名配對</a></li>
-                    <li><a href="conamefate.php">公司名鑑定</a></li>
-                    <li><a href="#skills">公司名配對</a></li>
+                    <li class="active"><a href="conamefate.php">公司名鑑定</a></li>
+                    <li><a href="conameing.php">公司名配對</a></li>
 					<li><a href="numfate.php">靈數鑑定</a></li>
 				</ul>
 			</nav>
@@ -55,7 +55,7 @@
 
 <!-- Introduction -->
 <div class="intro section" id="about">
-	<div class="container" style="text-align:center;">
+	<div  style="text-align:center;">
     <span id="typed"></span>
 		<div class="units-row units-split wrap">
 			<div class="unit-20">
@@ -82,15 +82,15 @@
                         <br><br>
                         <?php
                             foreach ($name_fate['disintegration_name'] as $key => $val ) {
-                                echo '<span style="font-family:標楷體;font-size:48px;width:48px;line-height:55px;border:1px dashed #ccc;padding:8px;margin-right:14px">' . str_pad($val['strokes'],2,'0',STR_PAD_LEFT)  . '</span>';
+                                echo '<span style="font-family:標楷體;font-size:24px;width:48px;line-height:55px;border:1px dashed #ccc;padding:8px;margin-right:14px">' . str_pad($val['strokes'],2,'0',STR_PAD_LEFT)  . '</span>';
                             }
                             foreach ($name_fate['disintegration_kind_name'] as $key => $val ) {
-                                echo '<span style="font-family:標楷體;font-size:48px;width:48px;line-height:55px;border:1px dashed #ccc;padding:8px;margin-right:14px">' . str_pad($val['strokes'],2,'0',STR_PAD_LEFT)  . '</span>';
+                                echo '<span style="font-family:標楷體;font-size:24px;width:48px;line-height:55px;border:1px dashed #ccc;padding:8px;margin-right:14px">' . str_pad($val['strokes'],2,'0',STR_PAD_LEFT)  . '</span>';
                             }
                         ?>
                     </h1>
                 <div>
-                <h2>姓名鑑定報告</h2>
+                <h2>公司名鑑定報告</h2>
 			</div>
 			<p>
 			</p>

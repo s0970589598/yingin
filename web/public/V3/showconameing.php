@@ -46,7 +46,7 @@
 					<li><a href="namefate.php">姓名鑑定</a></li>
 					<li class="active"><a href="nameing.php">姓名配對</a></li>
                     <li><a href="conamefate.php">公司名鑑定</a></li>
-                    <li><a href="#skills">公司名配對</a></li>
+                    <li><a href="conameing.php">公司名配對</a></li>
 					<li><a href="numfate.php">靈數鑑定</a></li>
 				</ul>
 			</nav>
@@ -56,15 +56,19 @@
 
 <!-- Introduction -->
 <div class="intro section" id="about">
-	<div class="container" style="text-align:center;">
+	<div style="text-align:center;">
     <span id="typed"></span>
 		<div class="units-row units-split wrap">
-			<div class="unit-20">
-                <img src="../img/ava.jpg" alt="Avatar">
-			</div>
-			<div class="unit-80">
+
                     <h1>
                         <?php
+
+                        for ($i = 0; $i < count($nameing['nameing'][0]['num']); $i++) {
+                            echo '<div style="display: inline-block;margin: 0px 5px;">';
+                            echo '<d style="font-family:標楷體;font-size:32px;width:48px;line-height:60px;border:1px dashed #ccc;padding:5px 35px 10px 10px;margin-bottom: 5px;"></d>';
+                            echo '<span style="display: block;background: #eae9e7;border-radius: 2px;padding: 4;line-height: 100%;font-size: 14px;text-align: center;margin-top :10px;">楷體</span>';
+                            echo '</div>';
+                        }
                             foreach ($nameing['kind_co'] as $key => $val) {
                                 echo '<div style="display: inline-block;margin: 0px 5px;">';
                                 echo '<d style="font-family:標楷體;font-size:32px;width:48px;line-height:55px;border:1px dashed #ccc;padding:8px;margin-bottom: 5px;">' . $val['name'] . '</d>';
@@ -74,12 +78,15 @@
                         ?>
                         <br><br>
                         <?php
+                            for ($i = 0; $i < count($nameing['nameing'][0]['num']); $i++) {
+                                echo '<span style="font-family:標楷體;font-size:32px;width:48px;line-height:60px;border:1px dashed #ccc;padding:8px 35px 8px 10px;margin-right:14px"></span>';
+                            }
                             foreach ($nameing['kind_co'] as $key => $val ) {
                                 echo '<span style="font-family:標楷體;font-size:32px;width:48px;line-height:55px;border:1px dashed #ccc;padding:8px;margin-right:14px">' . str_pad($val['strokes'],2,'0',STR_PAD_LEFT)  . '</span>';
                             }
                         ?>
                     </h1>
-                <div>
+
                 <h2>公司名配對</h2>
 			</div>
 			<p>
@@ -89,7 +96,7 @@
 </div>
 
 
-<?php foreach ($nameing['nameing'] as $key => $val ) {?>
+<?php foreach ($nameing['nameing'] as $key => $val) {?>
 <!-- Work Experience -->
 <div class="work section second" id="experiences" style="margin:20px;">
 	<div >
@@ -99,7 +106,7 @@
             foreach ($val['num'] as $val1) {
                 echo '<span style="font-family:標楷體;font-size:48px;width:48px;line-height:55px;border:1px dashed #ccc;padding:8px;margin-right:14px">' . str_pad((string)$val1,2,'0',STR_PAD_LEFT)  . '</span>';
             }
-            ?> &amp; 評價  <?php //echo $val['score'];?>
+            ?> &amp;<?php //echo '評價' . $val['score'];?>
 
             </h1>
 		<ul class="work-list">

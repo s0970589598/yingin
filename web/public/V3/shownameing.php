@@ -48,7 +48,7 @@
 					<li><a href="namefate.php">姓名鑑定</a></li>
 					<li class="active"><a href="nameing.php">姓名配對</a></li>
                     <li><a href="conamefate.php">公司名鑑定</a></li>
-                    <li><a href="#skills">公司名配對</a></li>
+                    <li><a href="conameing.php">公司名配對</a></li>
 					<li><a href="numfate.php">靈數鑑定</a></li>
 				</ul>
 			</nav>
@@ -71,7 +71,7 @@
             </h1>
 		<ul class="work-list">
         <?php foreach ($val['chain_sum'] as $key => $val1 ) {
-                if (isset($val1['article'])) {
+                if (isset($val1)) {
         ?>
 			<li><?php echo ($key == 0 ? '乾格和數' : ($key == 1 ? '坤格和數' : ''));?></li>
             <li><a href="#"><?php echo $val1['article']['goodorbad'] . '  ';?></a><?php echo $val1['article']['mean'] . '  -  ' . $val1['article']['yingin10000_num'];?></li>
@@ -81,7 +81,7 @@
         ?>
         <?php
             foreach ($val['matching'] as $key => $val2) {
-                if (isset($val2['article'])) {
+                if (isset($val2)) {
         ?>
 		<ul class="work-list">
 			<li><?php echo($key == 0 ? '乾格配數' : ($key == 1 ? '坤格配數' : '')); ?></li>

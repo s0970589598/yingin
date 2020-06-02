@@ -22,7 +22,7 @@
                 </nav>
             </div>
             <div class="container">
-                <h1>姓名配對</h1>
+                <h1>公司名配對</h1>
                 <div class="loader">
                     <div class="inner one"></div>
                     <div class="inner two"></div>
