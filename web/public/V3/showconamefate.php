@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="../css/kube.css" />
 <link rel="stylesheet" href="../css/font-awesome.min.css" />
 <link rel="stylesheet" href="../css/custom.css" />
+<link rel="stylesheet" href="../css/tooltips.css" />
 <link rel="shortcut icon" href="../img/favicon.png" />
 <link href='https://fonts.googleapis.com/css?family=Playfair+Display+SC:700' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>

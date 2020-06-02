@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="../css/kube.css" />
 <link rel="stylesheet" href="../css/font-awesome.min.css" />
 <link rel="stylesheet" href="../css/custom.css" />
+<link rel="stylesheet" href="../css/tooltips.css" />
 <link rel="shortcut icon" href="../img/favicon.png" />
 <link href='https://fonts.googleapis.com/css?family=Playfair+Display+SC:700' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
@@ -30,6 +31,7 @@
         content: 'NAME';
     }
     .wordTab .Ft d, .wordTab .Ft img  {font-size:48px;width:48px;line-height:55px;margin-bottom:5px;border:1px dashed #ccc;}
+
 </style>
 </head>
 <body>
@@ -98,7 +100,7 @@
        ?>
 		<ul class="work-list">
 			<li><?php echo ($key == 0 ? '乾格和數' : ($key == 1 ? '坤格和數' : ''));?></li>
-			<li><a href="#"><?php echo $val['article']['goodorbad'] . '  ';?></a><?php echo $val['article']['mean'] . '  -  ' . $val['article']['yingin10000_num'];?></li>
+			<li data-tooltip="Hello World!"><a href="#" ><?php echo $val['article']['goodorbad'] . '  ';?></a><?php echo $val['article']['mean'] . '  -  ' . $val['article']['yingin10000_num'];?></li>
         </ul>
         <?php
                 }
