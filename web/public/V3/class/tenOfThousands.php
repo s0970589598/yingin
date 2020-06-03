@@ -72,6 +72,7 @@ class tenOfthousands extends SqlTool {
             'yingin192_id' => $row['yingin192_id'],
             'goodorbad' => $row['goodorbad'],
             'mean' => $row['mean'],
+            'point' => $row['point'],
             'thousand_num' => $row['thousand_num'],
         );
 

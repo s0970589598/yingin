@@ -61,7 +61,7 @@
         <h1>鑑定數字 : <?php echo $num_fate['tear_down']['num'];?> &amp;</h1>
 		<ul class="work-list">
 			<li></li>
-			<li style="font-size:24px;"><a href="#"><?php echo $num_fate['gua']['goodorbad'];?>  </a><?php echo $num_fate['gua']['mean'];?> <br/></li>
+			<li style="font-size:24px;" data-tooltip="<?php echo $num_fate['gua']['point'] . '  ';?>"><a href="#"><?php echo $num_fate['gua']['goodorbad'];?>  </a><?php echo $num_fate['gua']['mean'];?> <br/></li>
 			<li><hr></li>
 			<li>【諸葛神算 : 第 <?php echo $num_fate['gua']['yingin192_id'];?> 條 , 萬數歸宗 : 第 <?php echo $num_fate['gua']['thousand_num'];?> 條】</li>
             <li>【前數】: <?php echo $num_fate['tear_down']['before_num'];?>  【後數】: <?php echo $num_fate['tear_down']['after_num'];?>  【總數】: <?php echo $num_fate['tear_down']['sum_num'];?> </li>

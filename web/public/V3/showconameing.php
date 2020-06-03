@@ -45,9 +45,9 @@
 			<nav id="navbar-1" class="navbar item-nav">
 				<ul>
 					<li><a href="namefate.php">姓名鑑定</a></li>
-					<li class="active"><a href="nameing.php">姓名配對</a></li>
+					<li><a href="nameing.php">姓名配對</a></li>
                     <li><a href="conamefate.php">公司名鑑定</a></li>
-                    <li><a href="conameing.php">公司名配對</a></li>
+                    <li class="active"><a href="conameing.php">公司名配對</a></li>
 					<li><a href="numfate.php">靈數鑑定</a></li>
 				</ul>
 			</nav>
@@ -115,7 +115,7 @@
                 if (isset($val1)) {
         ?>
 			<li><?php echo ($key == 0 ? '乾格和數' : ($key == 1 ? '坤格和數' : ''));?></li>
-            <li><a href="#"><?php echo $val1['article']['goodorbad'] . '  ';?></a><?php echo $val1['article']['mean'] . '  -  ' . $val1['article']['yingin10000_num'];?></li>
+            <li data-tooltip="<?php echo $val1['article']['point'] . '  ';?>"><a href="#"><?php echo $val1['article']['goodorbad'] . '  ';?></a><?php echo $val1['article']['mean'] . '  -  ' . $val1['article']['yingin10000_num'];?></li>
         <?php
                 }
             }
@@ -126,16 +126,16 @@
         ?>
 		<ul class="work-list">
 			<li><?php echo($key == 0 ? '乾格配數' : ($key == 1 ? '坤格配數' : '')); ?></li>
-			<li><a href="#"><?php echo $val2['article']['goodorbad'] . '  '; ?></a><?php echo $val2['article']['mean'] . '  -  ' . $val2['article']['yingin10000_num']; ?></li>
+			<li data-tooltip="<?php echo $val2['article']['point'] . '  ';?>"><a href="#"><?php echo $val2['article']['goodorbad'] . '  '; ?></a><?php echo $val2['article']['mean'] . '  -  ' . $val2['article']['yingin10000_num']; ?></li>
         </ul>
         <?php
                 }
             }
         ?>
         	<li>小總格和數</li>
-			<li><a href="#"><?php echo $val['total']['total_num']['article']['goodorbad'] . '  ';?></a><?php echo $val['total']['total_num']['article']['mean'] . '  -  ' .$val['total']['total_num']['article']['yingin10000_num'];?></php></li>
+			<li data-tooltip="<?php echo $val['total']['total_num']['article']['point'] . '  ';?>"><a href="#"><?php echo $val['total']['total_num']['article']['goodorbad'] . '  ';?></a><?php echo $val['total']['total_num']['article']['mean'] . '  -  ' .$val['total']['total_num']['article']['yingin10000_num'];?></php></li>
         	<li>大總格和數</li>
-			<li><a href="#"><?php echo $val['total']['big_total_num']['article']['goodorbad'] . '  ';?></a><?php echo $val['total']['big_total_num']['article']['mean'] . '  -  ' .$val['total']['big_total_num']['article']['yingin10000_num'];?></php></li>
+			<li data-tooltip="<?php echo $val['total']['big_total_num']['article']['point'] . '  ';?>"><a href="#"><?php echo $val['total']['big_total_num']['article']['goodorbad'] . '  ';?></a><?php echo $val['total']['big_total_num']['article']['mean'] . '  -  ' .$val['total']['big_total_num']['article']['yingin10000_num'];?></php></li>
         </ul>
 
 	</div>

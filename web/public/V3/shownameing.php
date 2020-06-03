@@ -75,7 +75,7 @@
                 if (isset($val1)) {
         ?>
 			<li><?php echo ($key == 0 ? '乾格和數' : ($key == 1 ? '坤格和數' : ''));?></li>
-            <li><a href="#"><?php echo $val1['article']['goodorbad'] . '  ';?></a><?php echo $val1['article']['mean'] . '  -  ' . $val1['article']['yingin10000_num'];?></li>
+            <li data-tooltip="<?php echo $val1['article']['point'] . '  ';?>"><a href="#"><?php echo $val1['article']['goodorbad'] . '  ';?></a><?php echo $val1['article']['mean'] . '  -  ' . $val1['article']['yingin10000_num'];?></li>
         <?php
                 }
             }
@@ -86,14 +86,14 @@
         ?>
 		<ul class="work-list">
 			<li><?php echo($key == 0 ? '乾格配數' : ($key == 1 ? '坤格配數' : '')); ?></li>
-			<li><a href="#"><?php echo $val2['article']['goodorbad'] . '  '; ?></a><?php echo $val2['article']['mean'] . '  -  ' . $val2['article']['yingin10000_num']; ?></li>
+			<li data-tooltip="<?php echo $val2['article']['point'] . '  ';?>"><a href="#"><?php echo $val2['article']['goodorbad'] . '  '; ?></a><?php echo $val2['article']['mean'] . '  -  ' . $val2['article']['yingin10000_num']; ?></li>
         </ul>
         <?php
                 }
             }
         ?>
         	<li>總格和數</li>
-			<li><a href="#"><?php echo $val['total']['article']['goodorbad'] . '  ';?></a><?php echo $val['total']['article']['mean'] . '  -  ' .$val['total']['article']['yingin10000_num'];?></php></li>
+			<li data-tooltip="<?php echo $val['total']['article']['point'] . '  ';?>"><a href="#"><?php echo $val['total']['article']['goodorbad'] . '  ';?></a><?php echo $val['total']['article']['mean'] . '  -  ' .$val['total']['article']['yingin10000_num'];?></php></li>
         </ul>
 
 	</div>

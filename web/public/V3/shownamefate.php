@@ -100,7 +100,7 @@
        ?>
 		<ul class="work-list">
 			<li><?php echo ($key == 0 ? '乾格和數' : ($key == 1 ? '坤格和數' : ''));?></li>
-			<li data-tooltip="Hello World!"><a href="#" ><?php echo $val['article']['goodorbad'] . '  ';?></a><?php echo $val['article']['mean'] . '  -  ' . $val['article']['yingin10000_num'];?></li>
+			<li data-tooltip="<?php echo $val['article']['point'] . '  ';?>"><a href="#" ><?php echo $val['article']['goodorbad'] . '  ';?></a><?php echo $val['article']['mean'] . '  -  ' . $val['article']['yingin10000_num'];?></li>
         </ul>
         <?php
                 }
@@ -119,7 +119,7 @@
         ?>
 		<ul class="work-list">
 			<li><?php echo($key == 0 ? '乾格配數' : ($key == 1 ? '坤格配數' : '')); ?></li>
-			<li><a href="#"><?php echo $val['article']['goodorbad'] . '  '; ?></a><?php echo $val['article']['mean'] . '  -  ' . $val['article']['yingin10000_num']; ?></li>
+			<li data-tooltip="<?php echo $val['article']['point'] . '  ';?>"><a href="#"><?php echo $val['article']['goodorbad'] . '  '; ?></a><?php echo $val['article']['mean'] . '  -  ' . $val['article']['yingin10000_num']; ?></li>
         </ul>
         <?php
                 }
@@ -133,7 +133,7 @@
 		<h1>總格 &amp;</h1>
 		<ul class="work-list">
 			<li>總格和數</li>
-			<li><a href="#"><?php echo $name_fate['total_num']['article']['goodorbad'] . '  ';?></a><?php echo $name_fate['total_num']['article']['mean'] . '  -  ' .$name_fate['total_num']['article']['yingin10000_num'];?></php></li>
+			<li data-tooltip="<?php echo $name_fate['total_num']['article']['point'] . '  ';?>"><a href="#"><?php echo $name_fate['total_num']['article']['goodorbad'] . '  ';?></a><?php echo $name_fate['total_num']['article']['mean'] . '  -  ' .$name_fate['total_num']['article']['yingin10000_num'];?></php></li>
 		</ul>
 	</div>
 </div>

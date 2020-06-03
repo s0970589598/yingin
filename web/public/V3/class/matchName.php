@@ -259,6 +259,7 @@ class matchName extends SqlTool
             'yingin10000_num' => $row['yingin10000_num'],
             'goodorbad' => $row['goodorbad'],
             'mean' => $row['mean'],
+            'point' => $row['point'],
             'thousand_num' => $row['thousand_num'],
         );
 
