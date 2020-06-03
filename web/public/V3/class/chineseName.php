@@ -44,6 +44,7 @@ class chineseName extends SqlTool {
     public function getCompositeNum($disintegration_name)
     {
         $name_count = count($disintegration_name);
+        $composite_num['score'] = 0;
 
         for ($j = 0; $j <= $name_count; $j++) {
             if($j+1 > ($name_count - 1)) {
@@ -61,7 +62,7 @@ class chineseName extends SqlTool {
     public function getMatchingNum($disintegration_name)
     {
         $name_count = count($disintegration_name);
-
+        $matching_num['score'] = 0;
         for ($k = 0; $k <= $name_count; $k++) {
             if ($k+1 > ($name_count - 1)) {
                 break;
@@ -91,8 +92,9 @@ class chineseName extends SqlTool {
     public function getTotalNum($disintegration_name)
     {
         $name_count = count($disintegration_name);
-
-        for ($l = 0; $l <= $name_count; $l++) {
+        $total_num['num'] = 0;
+        $total_num['score'] = 0;
+        for ($l = 0; $l < $name_count; $l++) {
             $total_num['num'] += (int)$disintegration_name[$l]['strokes'];
         }
 

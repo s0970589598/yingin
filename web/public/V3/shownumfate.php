@@ -85,7 +85,7 @@
 <script>
 	function newTyped(){}$(function(){$("#typed").typed({
 	// Change to edit type effect
-	strings: ["帝王姓名學", "姓名鑑定、姓名配對、易經靈數"],
+	strings: ["帝王姓名學", "姓名鑑定、姓名配對、易經靈數", "公司名鑑定、公司名配對"],
 
 	typeSpeed:90,backDelay:700,contentType:"html",loop:!0,resetCallback:function(){newTyped()}}),$(".reset").click(function(){$("#typed").typed("reset")})});
 </script>

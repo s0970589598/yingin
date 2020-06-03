@@ -197,6 +197,8 @@ class matchName extends SqlTool
         $key = 0;
 
         for ($l = 0; $l < $total; $l++) {
+            $total_num[$l]['num'] = 0;
+
             for ($m = 0; $m < $name_count; $m++) {
                 $total_num[$l]['num'] += (int)$sec[$l][$m];
             }
@@ -206,6 +208,7 @@ class matchName extends SqlTool
             $total_n[$l]['article'] = self::getArticle($total_n[$l]['num']);
 
             if (self::getTotalGoodOrBad($total_n[$l]['article']['goodorbad'])) {
+                $composite_num2[$key]['score'] = 0;
                 for ($o = 0; $o < $name_count; $o++) {
                     $composite_num2[$key]['num'][$o] = $sec[$l][$o];
                 }

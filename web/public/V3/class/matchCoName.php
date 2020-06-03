@@ -23,6 +23,7 @@ class matchCoName extends SqlTool
     {
         $first_num = trim($first_num);
         $name_count = trim($name_count);
+        $fir_num = 0;
 
         $name_c = mb_strlen(trim($first_num));
         for ($i = 0; $i < $name_c; $i++) {
