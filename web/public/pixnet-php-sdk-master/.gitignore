@@ -1,0 +1,12 @@
+.DS_Store
+.idea/
+build/
+cache.properties
+composer.lock
+composer.phar
+examples/init.inc.php
+tests/Authentication.php
+vendor/
+node_modules/
+package.json
+tests/gulpfile.js
