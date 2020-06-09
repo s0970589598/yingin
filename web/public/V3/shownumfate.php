@@ -49,6 +49,7 @@
                     <li><a href="conamefate.php">公司名鑑定</a></li>
                     <li><a href="conameing.php">公司名配對</a></li>
 					<li class="active"><a href="numfate.php">靈數鑑定</a></li>
+                    <li><a href="showagepixnet.php">部落格</a></li>
 				</ul>
 			</nav>
 		</header>

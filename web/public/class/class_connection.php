@@ -21,7 +21,7 @@
         // 完成select dql
         public  function execute_dql($sql){
 
-            $res=MySQLi_query($this->conn,$sql) or die(MySQLi_error());
+            $res=MySQLi_query($this->conn,$sql) or die(MySQLi_error($this->conn));
             return $res;
 
         }
